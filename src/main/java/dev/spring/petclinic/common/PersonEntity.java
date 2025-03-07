@@ -13,11 +13,11 @@ import javax.validation.constraints.NotBlank;
 public class PersonEntity extends BaseEntity {
 
     @Column(name = "first_name")
-    @NotBlank
+    @NotBlank(message = "비어 있을 수 없습니다")
     private String firstName;
 
     @Column(name = "last_name")
-    @NotBlank
+    @NotBlank(message = "비어 있을 수 없습니다")
     private String lastName;
 
 }

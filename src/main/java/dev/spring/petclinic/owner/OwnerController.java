@@ -2,8 +2,11 @@ package dev.spring.petclinic.owner;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/owners")
@@ -27,7 +30,13 @@ public class OwnerController {
     }
 
     @PostMapping("/new")
-    public ModelAndView addOwner(Owner owner) {
+    public ModelAndView addOwner(@Valid Owner owner, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            ModelAndView mav = new ModelAndView("owners/createOrUpdateOwnerForm");
+            mav.addObject("owner", owner);
+            return mav;
+        }
+
         ownerService.save(owner);
         return new ModelAndView("redirect:/owners/" + owner.getId());
     }
