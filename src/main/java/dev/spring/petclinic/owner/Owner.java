@@ -27,11 +27,14 @@ public class Owner extends PersonEntity {
 
     @Column(name = "telephone")
     @NotBlank
-    @Pattern(regexp = "\\d{10}", message = "숫자 값이 한계를 초과합니다(<10 자리>.<0 자리> 예상)")
+    @Pattern(regexp = "\\d{1,11}")
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private final List<Pet> pets = new ArrayList<>();
 
+    public boolean isNew() {
+        return this.getId() == null;
+    }
 }
