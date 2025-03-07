@@ -1,6 +1,6 @@
 # 지섭이의 동물병원
-## 팀
-## 👥 팀 소개
+
+## 팀 소개
 | ![js](https://avatars.githubusercontent.com/u/140247789?v=4)| ![wb](https://avatars.githubusercontent.com/u/128762057?v=4) | ![sy](https://avatars.githubusercontent.com/u/87513664?v=4) |
 |--------------------------------------|---------------------------------------|------------------------------------|
 | [임지섭](https://github.com/icebear0111)| [이원빈](https://github.com/Lwonbin) | [이소연](https://github.com/reed426) |
