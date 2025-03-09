@@ -18,4 +18,7 @@ public class Vet extends PersonEntity {
     @JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
     private Set<Specialty> specialties = new HashSet<>();
 
+    public int getNrOfSpecialties() {
+        return (specialties != null) ? specialties.size() : 0;
+    }
 }
