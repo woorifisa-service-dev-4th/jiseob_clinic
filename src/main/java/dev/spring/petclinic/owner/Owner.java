@@ -36,4 +36,11 @@ public class Owner extends PersonEntity {
     public boolean isNew() {
         return this.getId() == null;
     }
+
+    public void addPet(Pet pet) {
+        if (pet.isNew()) {
+            pet.setOwner(this);
+            pets.add(pet);
+        }
+    }
 }
