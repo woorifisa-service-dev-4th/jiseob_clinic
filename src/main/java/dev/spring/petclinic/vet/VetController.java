@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,20 +17,20 @@ public class VetController {
     private final VetRepository vetRepository;
 
     @GetMapping("/vets")
-    public String getVets(Model model, @RequestParam(defaultValue = "1") int page) {
+    public ModelAndView getVets(@RequestParam(defaultValue = "1") int page) {
         int pageSize = 5;
         Page<Vet> vetPage = vetRepository.findAll(PageRequest.of(page - 1, pageSize));
-
+        ModelAndView mav = new ModelAndView("vets/vetList");
 
         if (page > vetPage.getTotalPages()) {
-            return "redirect:/vets?page=" + vetPage.getTotalPages();
+            return new ModelAndView("redirect:/vets?page=" + vetPage.getTotalPages());
         }
 
-        model.addAttribute("listVets", vetPage.getContent());
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", vetPage.getTotalPages());
+        mav.addObject("listVets", vetPage.getContent());
+        mav.addObject("currentPage", page);
+        mav.addObject("totalPages", vetPage.getTotalPages());
 
-        return "vets/vetList";
+        return mav;
     }
 
 }
