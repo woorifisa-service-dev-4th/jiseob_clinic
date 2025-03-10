@@ -18,20 +18,29 @@ import java.util.List;
 public class Owner extends PersonEntity {
 
     @Column(name = "address")
-    @NotBlank
+    @NotBlank(message = "비어 있을 수 없습니다")
     private String address;
 
     @Column(name = "city")
-    @NotBlank
+    @NotBlank(message = "비어 있을 수 없습니다")
     private String city;
 
     @Column(name = "telephone")
-    @NotBlank
-    @Pattern(regexp = "\\d{10}", message = "숫자 값이 한계를 초과합니다(<10 자리>.<0 자리> 예상)")
+    @Pattern(regexp = "\\d{1,11}", message = "형식에 맞게 입력해주세요")
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
     private final List<Pet> pets = new ArrayList<>();
 
+    public boolean isNew() {
+        return this.getId() == null;
+    }
+
+    public void addPet(Pet pet) {
+        if (pet.isNew()) {
+            pet.setOwner(this);
+            pets.add(pet);
+        }
+    }
 }

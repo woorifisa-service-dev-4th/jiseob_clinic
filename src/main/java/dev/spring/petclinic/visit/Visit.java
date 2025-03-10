@@ -1,13 +1,12 @@
 package dev.spring.petclinic.visit;
 
 import dev.spring.petclinic.common.BaseEntity;
+import dev.spring.petclinic.pet.Pet;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
@@ -24,4 +23,23 @@ public class Visit extends BaseEntity {
     @Column(name = "description")
     @NotBlank
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id", nullable = false)
+    private Pet pet;
+
+    public boolean isNew() {
+        return this.getId() == null;
+    }
+
+    public LocalDate getDate() {
+        return this.visitDate;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+        if (pet != null) {
+            pet.getVisits().add(this);
+        }
+    }
 }
