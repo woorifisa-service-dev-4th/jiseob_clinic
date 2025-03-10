@@ -32,9 +32,55 @@
   	- 펫 추가를 할 경우 Name, Birth Date, Type의 값을 설정한 뒤에 Add Pet을 눌러 저장한다.
     - 값들이 빈칸일 경우 "X is required"를 출력한다.
     
-    
+
+
 		
 ### 3. 수정
 	3-1. 주인 수정
   	- First Name, Last Name, Address, City, Telephone의 필드값을 수정할 수 있다.
+
+
+## 결과
+
+### 1. HOME
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/4901b3b1-c437-42a9-91cd-143566d20d5d" />
+
+
+### 2. FIND USERS
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/1620fc77-f8f9-452b-a118-d4c27dfba494" />
+
+#### 2-1. Find Owner (전체 조회)
+<img width="1437" alt="image" src="https://github.com/user-attachments/assets/c14c783e-6fc8-4ff0-b87d-4ef635cf1638" />
+
+#### 2-2. Find Owner (특정 인물 조회)
+- 입력한 Last Name을 가진 Owner가 1명 일 떄 -> 바로 Owner Information으로 이동
+<img width="1439" alt="스크린샷 2025-03-10 11 19 38" src="https://github.com/user-attachments/assets/bddb4035-8f1a-402b-9e96-9f510e0189db" />
+
+- 입력한 Last Name을 가진 Owner가 2명 이상일 때 
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/db105999-2949-4ece-a198-1f46035f39a2" />
+
+#### 2-3. Owner Information 
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/e2708e13-fd3d-4718-898e-e82ce404bac7" />
+
+- Edit Owner
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/eee71741-6786-43be-9554-94126a3bf8b8" />
+
+- Add New Pet
+<img width="1440" alt="스크린샷 2025-03-10 11 23 11" src="https://github.com/user-attachments/assets/b51e62c5-2a30-4bff-9738-c6776e979229" />
+
+### 2-4. Pets and Visits
+- Edit Pet
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/e7b871df-1de1-498e-9b3d-a57e0c030bbe" />
+
+- Add Visit
+제작 중 ...
+
+### 3. VETERINARIANS
+<img width="1429" alt="image" src="https://github.com/user-attachments/assets/851f3059-39e4-4b48-8075-a2fb170b563b" />
+
+
+### 4. ERROR
+<img width="1440" alt="스크린샷 2025-03-10 11 15 20" src="https://github.com/user-attachments/assets/f3754a76-c1cb-45e2-bbb7-bf2fbe7d815a" />
+
+
 	
