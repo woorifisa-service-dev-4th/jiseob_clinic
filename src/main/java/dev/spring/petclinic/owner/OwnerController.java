@@ -76,4 +76,29 @@ public class OwnerController {
 
         return mav;
     }
+
+    @GetMapping("/{ownerId}/edit")
+    public ModelAndView editOwnerForm(@PathVariable int ownerId) {
+        Owner owner = ownerService.findById(ownerId);
+        ModelAndView mav = new ModelAndView("owners/createOrUpdateOwnerForm");
+        mav.addObject("owner", owner);
+        return mav;
+    }
+
+
+    @PostMapping("/{ownerId}/edit")
+    public ModelAndView updateOwner(@PathVariable int ownerId, @Valid Owner owner, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            ModelAndView mav = new ModelAndView("owners/createOrUpdateOwnerForm");
+            mav.addObject("owner", owner);
+            return mav;
+        }
+
+        owner.setId(ownerId);
+        ownerService.save(owner);
+
+        return new ModelAndView("redirect:/owners/" + owner.getId());
+    }
+
+
 }
