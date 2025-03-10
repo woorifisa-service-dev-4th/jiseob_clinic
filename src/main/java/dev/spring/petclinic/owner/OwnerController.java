@@ -1,6 +1,8 @@
 package dev.spring.petclinic.owner;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
@@ -52,30 +54,46 @@ public class OwnerController {
     }
 
     @GetMapping
-    public ModelAndView findOwners(@RequestParam(value = "lastName", required = false) String lastName) {
+    public ModelAndView findOwners(
+            @RequestParam(value = "lastName", required = false) String lastName,
+            @RequestParam(defaultValue = "1") int page) {
+
         ModelAndView mav = new ModelAndView("owners/findOwners");
+        int pageSize = 5;
         Owner owner = new Owner();
         mav.addObject("owner", owner);
 
+        Page<Owner> ownerPage;
+
         if (lastName != null && !lastName.isBlank()) {
-            List<Owner> owners = ownerService.findByLastName(lastName);
-            if (owners.isEmpty()) {
+            ownerPage = ownerService.findByLastName(lastName, PageRequest.of(page - 1, pageSize));
+
+            if (ownerPage.isEmpty()) {
                 BindingResult bindingResult = new BeanPropertyBindingResult(owner, "owner");
                 bindingResult.rejectValue("lastName", "notFound", "has not been found");
                 mav.addObject("org.springframework.validation.BindingResult.owner", bindingResult);
-            } else if (owners.size() == 1) {
-                return new ModelAndView("redirect:/owners/" + owners.get(0).getId());
+            } else if (ownerPage.getTotalElements() == 1) {
+                return new ModelAndView("redirect:/owners/" + ownerPage.getContent().get(0).getId());
             } else {
                 mav.setViewName("owners/ownersList");
-                mav.addObject("listOwners", owners);
             }
         } else {
+            ownerPage = ownerService.findAll(PageRequest.of(page - 1, pageSize));
             mav.setViewName("owners/ownersList");
-            mav.addObject("listOwners", ownerService.findAll());
         }
+
+        // 잘못된 페이지 번호 요청 시 마지막 페이지로 리디렉트
+        if (page > ownerPage.getTotalPages()) {
+            return new ModelAndView("redirect:/owners?lastName=" + (lastName != null ? lastName : "") + "&page=" + ownerPage.getTotalPages());
+        }
+
+        mav.addObject("listOwners", ownerPage.getContent());
+        mav.addObject("currentPage", page);
+        mav.addObject("totalPages", ownerPage.getTotalPages());
 
         return mav;
     }
+
 
     @GetMapping("/{ownerId}/edit")
     public ModelAndView editOwnerForm(@PathVariable int ownerId) {

@@ -1,6 +1,8 @@
 package dev.spring.petclinic.owner;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +21,11 @@ public class OwnerService {
         return ownerRepository.findById(ownerId).orElse(null);
     }
 
-    public List<Owner> findByLastName(String lastName) {
-        return ownerRepository.findByLastNameContainingIgnoreCase(lastName);
+    public Page<Owner> findByLastName(String lastName, Pageable pageable) {
+        return ownerRepository.findByLastNameContainingIgnoreCase(lastName, pageable);
     }
 
-    public List<Owner> findAll() {
-        return ownerRepository.findAll();
+    public Page<Owner> findAll(Pageable pageable) {
+        return ownerRepository.findAll(pageable);
     }
 }
