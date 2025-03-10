@@ -17,19 +17,19 @@ public class VetController {
 
     @GetMapping("/vets")
     public String getVets(Model model, @RequestParam(defaultValue = "1") int page) {
-        int pageSize = 5; // 페이지당 데이터 개수
+        int pageSize = 5;
         Page<Vet> vetPage = vetRepository.findAll(PageRequest.of(page - 1, pageSize));
 
-        // ✅ 페이지가 유효한지 체크
+
         if (page > vetPage.getTotalPages()) {
-            return "redirect:/vets?page=" + vetPage.getTotalPages(); // 마지막 페이지로 리디렉션
+            return "redirect:/vets?page=" + vetPage.getTotalPages();
         }
 
-        model.addAttribute("listVets", vetPage.getContent()); // 수의사 목록
-        model.addAttribute("currentPage", page); // 현재 페이지
-        model.addAttribute("totalPages", vetPage.getTotalPages()); // 전체 페이지 수
+        model.addAttribute("listVets", vetPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", vetPage.getTotalPages());
 
-        return "vets/vetList"; // Thymeleaf 템플릿 반환
+        return "vets/vetList";
     }
 
 }
