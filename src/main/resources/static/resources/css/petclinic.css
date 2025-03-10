@@ -8009,4 +8009,9 @@ strong {
     margin-top: 10px;
     margin-bottom: 30px; } }
 
+.center-image {
+  display: block;
+  margin: 0 auto;
+}
+
 /*# sourceMappingURL=../../../../../../target/petclinic.css.map */
