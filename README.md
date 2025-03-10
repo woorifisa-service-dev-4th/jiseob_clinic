@@ -75,7 +75,11 @@
 <img width="1438" alt="image" src="https://github.com/user-attachments/assets/e7b871df-1de1-498e-9b3d-a57e0c030bbe" />
 
 - Add Visit
-제작 중 ...
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/2bff99bf-6431-4417-9d30-76ef43851819" />
+
+- Date와 Description을 입력하여 추가하면 Previous Visits에 추가된다.
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/123f42cd-2e06-4061-9465-0cd1334a42ea" />
+
 
 ### 3. VETERINARIANS
 <img width="1429" alt="image" src="https://github.com/user-attachments/assets/851f3059-39e4-4b48-8075-a2fb170b563b" />
