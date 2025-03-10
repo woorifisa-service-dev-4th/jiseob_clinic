@@ -50,7 +50,9 @@
 <img width="1440" alt="image" src="https://github.com/user-attachments/assets/1620fc77-f8f9-452b-a118-d4c27dfba494" />
 
 #### 2-1. Find Owner (전체 조회)
-<img width="1437" alt="image" src="https://github.com/user-attachments/assets/c14c783e-6fc8-4ff0-b87d-4ef635cf1638" />
+- pagination 추가 구현
+<img width="1439" alt="image" src="https://github.com/user-attachments/assets/0c1e3d95-b676-4bc3-99fe-434012acd6f4" />
+
 
 #### 2-2. Find Owner (특정 인물 조회)
 - 입력한 Last Name을 가진 Owner가 1명 일 떄 -> 바로 Owner Information으로 이동
