@@ -1,5 +1,6 @@
 package dev.spring.petclinic.pet;
 
+import dev.spring.petclinic.owner.Owner;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ public class PetService {
     public List<PetType> findAllPetTypes() {
         return petTypeRepository.findAll();
     }
+
+    public Pet findById(int petId) {return petRepository.findById(petId).orElse(null);}
 
     public void save(Pet pet) {
         petRepository.save(pet);
