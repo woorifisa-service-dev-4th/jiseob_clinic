@@ -80,9 +80,6 @@ public class PetRestController {
         Owner owner = ownerService.findById(ownerId);
         Pet existingPet = petService.findById(petId);
 
-        System.out.println("owner = " + owner.getId());
-        System.out.println("existingPet = " + existingPet);
-
         existingPet.setName(updatedPet.getName());
         existingPet.setBirthDate(updatedPet.getBirthDate());
         existingPet.setType(updatedPet.getType());
