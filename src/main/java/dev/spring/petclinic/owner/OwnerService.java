@@ -13,8 +13,8 @@ public class OwnerService {
 
     private final OwnerRepository ownerRepository;
 
-    public void save(Owner owner) {
-        ownerRepository.save(owner);
+    public Owner save(Owner owner) {
+        return ownerRepository.save(owner);
     }
 
     public Owner findById(int ownerId) {
