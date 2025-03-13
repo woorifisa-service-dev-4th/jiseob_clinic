@@ -24,6 +24,6 @@ public class OwnerRequest {
     @NotBlank(message = "City is required")
     private String city;
 
-    @Pattern(regexp = "\\d{10}", message = "Telephone number must be 10 digits")
+    @Pattern(regexp = "\\d{11}", message = "Telephone number must be 10 digits")
     private String telephone;
 }
