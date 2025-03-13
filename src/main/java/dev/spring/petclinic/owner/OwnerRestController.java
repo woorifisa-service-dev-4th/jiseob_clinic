@@ -51,7 +51,7 @@ public class OwnerRestController {
             @Parameter(description = "페이지 번호 (1부터 시작)", example = "1")
             @RequestParam(defaultValue = "1") int page) {
 
-        int pageSize = 5;
+        int pageSize = 20;
         Page<Owner> ownerPage;
 
         if (lastName != null && !lastName.isBlank()) {
@@ -85,20 +85,16 @@ public class OwnerRestController {
         owner.setTelephone(ownerRequest.getTelephone());
 
         Owner savedOwner = ownerService.save(owner);
-        return ResponseEntity.ok(new OwnerResponse(savedOwner));
+        OwnerResponse ownerResponse = new OwnerResponse(savedOwner);
+        return ResponseEntity.ok(ownerResponse);
     }
 
 
-    @Operation(summary = "Owner 수정", description = "Owner 정보를 수정합니다.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Owner 수정 성공"),
-            @ApiResponse(responseCode = "400", description = "잘못된 요청 데이터"),
-            @ApiResponse(responseCode = "404", description = "해당 ID의 Owner를 찾을 수 없음")
-    })
     @PutMapping("/{ownerId}")
     public ResponseEntity<OwnerResponse> updateOwner(
             @PathVariable int ownerId,
             @Valid @RequestBody OwnerRequest ownerRequest) {
+
 
         Owner existingOwner = ownerService.findById(ownerId);
         if (existingOwner == null) {
@@ -111,9 +107,9 @@ public class OwnerRestController {
         existingOwner.setCity(ownerRequest.getCity());
         existingOwner.setTelephone(ownerRequest.getTelephone());
 
-
         Owner updatedOwner = ownerService.save(existingOwner);
-
-        return ResponseEntity.ok(new OwnerResponse(updatedOwner));
+        OwnerResponse updatedOwnerResponse = new OwnerResponse(updatedOwner);
+        return ResponseEntity.ok(updatedOwnerResponse);
     }
+
 }
