@@ -1,5 +1,6 @@
 package dev.spring.petclinic.owner;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.spring.petclinic.common.PersonEntity;
 import dev.spring.petclinic.pet.Pet;
 import lombok.Getter;
