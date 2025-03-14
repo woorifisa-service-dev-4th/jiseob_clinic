@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -44,14 +46,11 @@ public class OwnerRestController {
             @ApiResponse(responseCode = "200", description = "Owner 목록 조회 성공")
     })
     @GetMapping("")
-    public ResponseEntity<List<OwnerResponse>> getOwners(
-            @Parameter(description = "검색할 성씨 (Last Name)", example = "Smith")
+    public ResponseEntity<Map<String, Object>> getOwners(
             @RequestParam(value = "lastName", required = false) String lastName,
-
-            @Parameter(description = "페이지 번호 (1부터 시작)", example = "1")
             @RequestParam(defaultValue = "1") int page) {
 
-        int pageSize = 20;
+        int pageSize = 5;
         Page<Owner> ownerPage;
 
         if (lastName != null && !lastName.isBlank()) {
@@ -65,8 +64,13 @@ public class OwnerRestController {
                 .map(OwnerResponse::new)
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(ownerDTOs);
+        Map<String, Object> response = new HashMap<>();
+        response.put("owners", ownerDTOs);
+        response.put("totalPages", ownerPage.getTotalPages());
+
+        return ResponseEntity.ok(response);
     }
+
 
     @Operation(summary = "Owner 추가", description = "새로운 Owner를 추가합니다.")
     @ApiResponses({
